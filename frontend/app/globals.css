@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+/*
+  SentinelX AI design system.
+  Visual identity: intelligent, elite, secure, futuristic, infrastructure-grade.
+  Deep black / charcoal base, electric blue accents, semantic risk colors.
+*/
+
+@theme {
+  --color-bg: #05070a;
+  --color-surface: #0a0e14;
+  --color-surface-2: #0f141c;
+  --color-surface-3: #151c26;
+  --color-border: #1c2530;
+  --color-border-strong: #2a3645;
+
+  --color-ink: #e6edf5;
+  --color-ink-muted: #8a97a8;
+  --color-ink-faint: #5b6877;
+
+  --color-brand: #2f81f7;
+  --color-brand-bright: #58a6ff;
+  --color-brand-dim: #1b3a5e;
+
+  --color-safe: #2ecc71;
+  --color-caution: #c9d11f;
+  --color-warning: #f5a623;
+  --color-danger: #ff4d4f;
+  --color-malicious: #ff2d55;
+  --color-unknown: #6b7785;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --radius-card: 14px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    color-scheme: dark;
+  }
+  body {
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(47, 129, 247, 0.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, rgba(46, 204, 113, 0.05), transparent 55%),
+      var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  ::selection {
+    background: rgba(47, 129, 247, 0.35);
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .glass {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(8px);
+  }
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+  }
+  .card-2 {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .glow-brand {
+    box-shadow: 0 0 0 1px rgba(47, 129, 247, 0.3), 0 8px 40px -12px rgba(47, 129, 247, 0.5);
+  }
+  .text-gradient {
+    background: linear-gradient(120deg, #e6edf5 10%, #58a6ff 55%, #2ecc71 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  70% { transform: scale(2.2); opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+@keyframes dash {
+  to { stroke-dashoffset: -1000; }
+}
+.animate-ticker { animation: ticker 40s linear infinite; }
+.animate-scan { animation: scan 4s ease-in-out infinite; }
+.live-dot { position: relative; }
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: pulse-ring 2s ease-out infinite;
+}
