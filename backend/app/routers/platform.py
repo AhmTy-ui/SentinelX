@@ -34,7 +34,7 @@ def list_keys(db: Session = Depends(get_db)) -> list[ApiKey]:
 
 @router.post("/keys", response_model=ApiKeyCreated, tags=["developer"])
 def create_key(payload: ApiKeyCreate, db: Session = Depends(get_db)) -> dict:
-    raw = "sk_" + ("live" if payload.environment == "production" else "test") + "_" + secrets.token_urlsafe(24)
+    raw = "sk_" + ("live" if payload.environment in ("production", "live") else "test") + "_" + secrets.token_urlsafe(24)
     key = ApiKey(
         name=payload.name,
         environment=payload.environment,

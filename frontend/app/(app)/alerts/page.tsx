@@ -33,12 +33,12 @@ export default function AlertsPage() {
   const filtered = useMemo(
     () =>
       alerts.filter((a) =>
-        tab === "all" ? true : tab === "active" ? a.status !== "Resolved" : a.status === "Resolved",
+        tab === "all" ? true : tab === "active" ? a.status !== "resolved" : a.status === "resolved",
       ),
     [alerts, tab],
   );
 
-  const active = alerts.filter((a) => a.status !== "Resolved").length;
+  const active = alerts.filter((a) => a.status !== "resolved").length;
 
   return (
     <div className="space-y-6">
@@ -72,7 +72,7 @@ export default function AlertsPage() {
       <div className="space-y-3">
         {filtered.map((a) => {
           const m = riskMeta(a.severity);
-          const resolved = a.status === "Resolved";
+          const resolved = a.status === "resolved";
           return (
             <Card key={a.id} className="!p-4" >
               <div className="flex flex-wrap items-start justify-between gap-3">

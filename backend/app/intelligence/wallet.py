@@ -126,7 +126,7 @@ def score_wallet(wallet: str, chain: str) -> WalletScoreResponse:
     return WalletScoreResponse(
         wallet=wallet,
         ens=ens,
-        chain=chain,
+        chain=CHAIN_LABELS.get(chain, chain.title()),
         risk_score=base,
         risk_level=level,
         reputation=reputation_label(base),
